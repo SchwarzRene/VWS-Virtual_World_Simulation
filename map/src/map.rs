@@ -1,12 +1,14 @@
 pub mod plant;
 pub mod water;
+pub mod animals;
 pub mod plant_tracker;
 
-#[derive(Clone, PartialEq)]
-pub enum Elements{
-    Plant,
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum Elements {
+    Empty,
     Water,
-    Empty
+    Plant,
+    Rabit
 }
 
 pub struct Map{
