@@ -1,9 +1,10 @@
-pub struct Rabit{
-    speed : f32
+#[derive(PartialEq)]
+pub struct RabitStruct{
+    pub speed : f32
 }
 
-impl Rabit{
+impl RabitStruct{
     pub fn new(){
-        
+
     }
 }

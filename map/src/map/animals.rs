@@ -1,3 +1,5 @@
+use rabit::RabitStruct;
+
 pub mod rabit;
 
 
@@ -7,34 +9,55 @@ pub enum Gender {
     Female
 }
 
+pub enum AnimalType {
+    Rabit(rabit::RabitStruct)
+}
+
+impl AnimalType{
+    pub fn update_animal( &self ){
+        self.update();
+    }
+}
+
+
 #[derive(PartialEq)]
-pub enum Typ {
+pub enum Typ{
     Rabit
 }
 
-pub struct AnimalData{
-    typ : Typ,
-    gender : Typ,
-    speed : f32,
+
+pub struct Animal{
+    typ : AnimalType,
+    gender : Gender,
     hunger : u8,
     lust : u8,
+    attractiveness : u8,
     thirst : u8,
     position : Vec<usize>
 }
 
-pub struct Animal{
-    typ : Typ,
-    gender : Gender
-}
-
 impl Animal {
-    fn setup( typ : Typ ){
-        if typ == Typ::Rabit{
-            let animal_typ = rabit::Rabit::new();
+    fn setup( typ : Typ, gender : Gender, position : Vec<usize> ) -> Self{
+
+        match typ{
+            Typ::Rabit => {
+                Animal{
+                    typ : AnimalType::Rabit( RabitStruct{
+                        speed : 1.,
+                    }),
+                    gender : gender,
+                    hunger : 0,
+                    lust : 0,
+                    thirst : 0,
+                    attractiveness : 0,
+                    position : position
+                }
+            }
         }
+        
     }
 
-    fn update(){
-
+    fn update( &self ){
+        self.typ.update();
     }
 }
